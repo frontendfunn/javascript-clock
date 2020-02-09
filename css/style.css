@@ -1,0 +1,165 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(50%, #99daf4), color-stop(50%, #b0e3f6));
+  background-image: linear-gradient(#99daf4 50%, #b0e3f6 50%);
+}
+
+.container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.clock {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  position: relative;
+  height: 300px;
+  width: 300px;
+  border: 30px solid #6bcaef;
+  border-radius: 500px;
+  background-color: #ffffff;
+  -webkit-box-shadow: 0px 4px 2px rgba(9, 62, 82, 0.25) inset, 0px -4px 2px rgba(9, 62, 82, 0.25) inset, 0px 2px 4px rgba(9, 62, 82, 0.5);
+          box-shadow: 0px 4px 2px rgba(9, 62, 82, 0.25) inset, 0px -4px 2px rgba(9, 62, 82, 0.25) inset, 0px 2px 4px rgba(9, 62, 82, 0.5);
+  z-index: 1;
+}
+
+.clock::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100%;
+  margin: auto;
+  height: 50%;
+  border-top-left-radius: 500px;
+  border-top-right-radius: 500px;
+  -webkit-transform: translate(-50%) rotate(135deg);
+          transform: translate(-50%) rotate(135deg);
+  -webkit-transform-origin: bottom;
+          transform-origin: bottom;
+  background-color: rgba(66, 74, 78, 0.1);
+}
+
+.clock .indicator {
+  position: absolute;
+  height: 16px;
+  width: 6px;
+  background-color: #424a4e;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  border-radius: 4px;
+}
+
+.clock .indicator:nth-child(1) {
+  -webkit-transform: rotate(90deg) translatey(-120px) translatey(8px);
+          transform: rotate(90deg) translatey(-120px) translatey(8px);
+}
+
+.clock .indicator:nth-child(2) {
+  -webkit-transform: rotate(180deg) translatey(-120px) translatey(8px);
+          transform: rotate(180deg) translatey(-120px) translatey(8px);
+}
+
+.clock .indicator:nth-child(3) {
+  -webkit-transform: rotate(270deg) translatey(-120px) translatey(8px);
+          transform: rotate(270deg) translatey(-120px) translatey(8px);
+}
+
+.clock .indicator:nth-child(4) {
+  -webkit-transform: rotate(360deg) translatey(-120px) translatey(8px);
+          transform: rotate(360deg) translatey(-120px) translatey(8px);
+}
+
+.clock .hand {
+  position: absolute;
+  -webkit-transform-origin: bottom;
+          transform-origin: bottom;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background-color: #424a4e;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
+          box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
+  transform-origin: bottom;
+  opacity: 0;
+}
+
+.clock .hand.hours {
+  height: 30%;
+  top: calc(50% - 30%);
+  width: 14px;
+  z-index: 1;
+}
+
+.clock .hand.minutes {
+  height: 38%;
+  top: calc(50% - 38%);
+  width: 12px;
+  z-index: 2;
+}
+
+.clock .hand.minutes::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  border-radius: 500px;
+  height: 30px;
+  width: 30px;
+  background-color: #424a4e;
+  z-index: 1;
+  -webkit-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+          box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+}
+
+.clock .hand.seconds {
+  height: 50%;
+  top: calc(58% - 50%);
+  width: 4px;
+  background-color: #eba65c;
+  z-index: 3;
+  -webkit-transform-origin: 2px calc(100% - 20px) 0;
+          transform-origin: 2px calc(100% - 20px) 0;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.clock .hand.seconds::before {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  height: 12px;
+  width: 12px;
+  border-radius: 500px;
+  background-color: #eba65c;
+}
+/*# sourceMappingURL=style.css.map */

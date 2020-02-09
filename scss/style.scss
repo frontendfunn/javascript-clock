@@ -1,0 +1,146 @@
+@function rem($value) {
+  @return unquote(($value/1px)/16+'rem');
+}
+$clockColor: #6bcaef;
+$clockBorder: 30px;
+$handsColor: #424a4e;
+$secondsHandColor: #eba65c;
+$clockBackground: #ffffff;
+
+$clockHeight: 300px;
+
+$indicatorHeight: 16px;
+$indicatorWidth: 6px;
+$indicatorsCount: 4;
+
+$hoursHandHeight: 30%;
+$minutesHandHeight: 38%;
+$secondsHandHeight: 50%;
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-image: linear-gradient(
+    lighten($clockColor, 10%) 50%,
+    lighten($clockColor, 15%) 50%
+  );
+}
+
+.container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.clock {
+  display: flex;
+  flex-shrink: 0;
+  position: relative;
+  height: $clockHeight;
+  width: $clockHeight;
+  border: $clockBorder solid $clockColor;
+  border-radius: 500px;
+  background-color: $clockBackground;
+  box-shadow: 0px 4px 2px rgba(darken($clockColor, 50%), 0.25) inset,
+    0px -4px 2px rgba(darken($clockColor, 50%), 0.25) inset,
+    0px 2px 4px rgba(darken($clockColor, 50%), 0.5);
+
+  z-index: 1;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 100%;
+    margin: auto;
+    height: 50%;
+    border-top-left-radius: 500px;
+    border-top-right-radius: 500px;
+    transform: translate(-50%) rotate(135deg);
+    transform-origin: bottom;
+    background-color: rgba($handsColor, 0.1);
+  }
+  .indicator {
+    position: absolute;
+    height: $indicatorHeight;
+    width: $indicatorWidth;
+    background-color: $handsColor;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 4px;
+    @for $i from 1 through $indicatorsCount {
+      &:nth-child(#{$i}) {
+        transform: rotate(#{$i * 360 / $indicatorsCount}deg)
+          translatey(-$clockHeight / 2 + $clockBorder)
+          translatey($indicatorHeight / 2);
+      }
+    }
+  }
+  .hand {
+    position: absolute;
+    transform-origin: bottom;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background-color: $handsColor;
+    border-radius: 10px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
+    transform-origin: bottom;
+    opacity: 0;
+    &.hours {
+      height: $hoursHandHeight;
+      top: calc(50% - #{$hoursHandHeight});
+      width: 14px;
+      z-index: 1;
+    }
+    &.minutes {
+      height: $minutesHandHeight;
+      top: calc(50% - #{$minutesHandHeight});
+      width: 12px;
+      z-index: 2;
+      &::before {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 500px;
+        height: 30px;
+        width: 30px;
+        background-color: $handsColor;
+        z-index: 1;
+        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+      }
+    }
+    &.seconds {
+      height: $secondsHandHeight;
+      top: calc(58% - #{$secondsHandHeight});
+      width: 4px;
+      background-color: $secondsHandColor;
+      z-index: 3;
+      transform-origin: 2px calc(100% - 20px) 0;
+      transform: rotate(45deg);
+      &::before {
+        content: '';
+        position: absolute;
+        bottom: 8px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        height: 12px;
+        width: 12px;
+        border-radius: 500px;
+        background-color: $secondsHandColor;
+      }
+    }
+  }
+}
